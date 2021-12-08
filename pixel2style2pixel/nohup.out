@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "scripts/train.py", line 32, in <module>
+    main()
+  File "scripts/train.py", line 19, in main
+    raise Exception('Oops... {} already exists'.format(opts.exp_dir))
+Exception: Oops... /mnt/pami23/stma/face/path5 already exists
