@@ -2,13 +2,17 @@ import torch
 import torch.nn as nn
 from pixel2style2pixel.models.stylegan2.model import Generator
 from pixel2style2pixel.models.psp import get_keys
+from net.transformer import TNet
 
 
 class Trainer(nn.Module):
     def __init__(self, attr_id):
         super().__init__()
         #to complement
-        self.transformer = nn.Sequential()
+        self.transformer = TNet(mapping_layers=18,
+                 mapping_fmaps=512,
+                 mapping_lrmul=1,
+                 mapping_nonlinearity='lrelu')
         self.classifier = nn.Sequential()
         self.generator = Generator(1024, 512, 8)
         self.attr_id = attr_id
