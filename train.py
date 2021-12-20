@@ -46,7 +46,6 @@ def main():
         trainer.initialize(args.stylegan_path, classifier_path)
         trainer.train()
         trainer.to(device)
-        epochs = 1
         for epoch in range(epochs):
             print("in_epoch!")
             for id, list in enumerate(iter):

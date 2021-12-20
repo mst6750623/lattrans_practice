@@ -3,6 +3,7 @@ import torch.nn as nn
 from pixel2style2pixel.models.stylegan2.model import Generator
 from pixel2style2pixel.models.psp import get_keys
 from net.transformer import TNet
+from net.classifier import classifier
 
 
 class Trainer(nn.Module):
@@ -13,7 +14,7 @@ class Trainer(nn.Module):
                  mapping_fmaps=512,
                  mapping_lrmul=1,
                  mapping_nonlinearity='lrelu')
-        self.classifier = nn.Sequential()
+        self.classifier = classifier(fmaps=[6048, 2048, 512, 40],activ='relu')
         self.generator = Generator(1024, 512, 8)
         self.attr_id = attr_id
 

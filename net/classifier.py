@@ -5,7 +5,7 @@ class classifier(nn.Module):
     def __init__(self,fmaps=[6048, 2048, 512, 40],activ='relu'):
         super(classifier, self).__init__()
         self.net = nn.ModuleList()
-        for i in range(fmaps)-1:
+        for i in range(len(fmaps)-1):
             in_dim = fmaps[i]
             out_dim = fmaps[i+1]
             self.net.append(nn.Linear(in_dim, out_dim,bias=True))
