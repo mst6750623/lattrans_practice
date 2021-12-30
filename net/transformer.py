@@ -19,7 +19,7 @@ def get_weight(weight, gain=1, use_wscale=True, lrmul=1):
     return weight * runtime_coef
 
 
-class DenseLayer():
+class DenseLayer(nn.Module):
     def __init__(self, input_dim, output_dim, lrmul, gain=1, use_wscale=True):
         super().__init__()
         self.weight = nn.Parameter(torch.Tensor(output_dim, input_dim))
