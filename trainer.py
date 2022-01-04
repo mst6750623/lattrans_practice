@@ -27,11 +27,13 @@ class Trainer(nn.Module):
 
     def initialize(self, generator_arg, classifier_arg):
         return
-        #generator_state = torch.load(generator_arg, map_location='cpu')
-        #self.generator.load_state_dict(get_keys(generator_state, 'encoder'),strict=True)
-        #self.classifier.load_state_dict(torch.load(classifier_arg))
+        generator_state = torch.load(generator_arg, map_location='cpu')
+        self.generator.load_state_dict(get_keys(generator_state, 'encoder'),strict=True)
+        self.classifier.load_state_dict(torch.load(classifier_arg))
 
     def cal_loss(self, w):
         k = self.attr_id
         p_k = self.classifier(self.transformer(w))[k]
         l_cls = -torch.log(p_k) - ()
+
+        l_reg = torch.MSELoss(w,)
