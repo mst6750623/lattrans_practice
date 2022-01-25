@@ -4,7 +4,7 @@ import os
 import yaml
 import torch.utils.data as data
 from utils.dataset import LatentDataset
-from trainer import *
+from trainer import Trainer
 
 parser = argparse.ArgumentParser(
     description="This is a description of trainer parser")
@@ -21,11 +21,13 @@ parser.add_argument(
     type=str,
     default="/mnt/pami23/stma/pretrained_models/psp_ffhq_encode.pt")
 
+
 def get_correlation(label_file):
     lbl = np.load(label_file)
     corr_ma = np.corrcoef(lbl.transpose())
     new_tensor = torch.from_numpy(corr_ma)
     print(new_tensor)
+
 
 '''def get_correlation(self, attr_num, threshold=1):
         if self.corr_ma is None:
@@ -36,6 +38,8 @@ def get_correlation(label_file):
         corr_vec[corr_vec >= threshold] = 1
         return 1 - corr_vec
         '''
+
+
 def main():
     args = parser.parse_args()
     config_path = "./config/" + args.config + ".yaml"
@@ -54,7 +58,7 @@ def main():
     dataset = LatentDataset(latent_code, latent_label, True)
     iter = data.DataLoader(dataset, batch_size, shuffle=True)
     get_correlation(latent_label)
-    return
+
     for i, attr in enumerate(attrs):
         print("attr", i, ": ", attr)
         trainer = Trainer(i, latent_label)
