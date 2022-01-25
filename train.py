@@ -74,8 +74,7 @@ def main():
                 label = list[1]
                 code, label = code.to(device), label.to(device)
                 print(code, label)
-                if id > 10:
-                    break
+                out_img = trainer.Generator(code)
 
 
 if __name__ == "__main__":
