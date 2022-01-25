@@ -70,8 +70,7 @@ def main():
         for epoch in range(epochs):
             print("in_epoch!")
             for id, list in enumerate(iter):
-                code = list[0]
-                label = list[1]
+                code, label = list[0], list[1]
                 code, label = code.to(device), label.to(device)
                 print(code, label)
                 out_img = trainer.Generator(code)
